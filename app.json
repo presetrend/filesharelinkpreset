@@ -1,13 +1,13 @@
 {
-  "name": "TG File Share/Sharing Bot",
-  "description": "file sharing bot store posts and it can access by special links",
+  "name": "PRESETREND File Share/Sharing Bot",
+  "description": "bagikan file anda melalui tautan singkat",
   "keywords": [
     "telegram",
     "file",
     "sharing"
   ],
-  "repository": "https://github.com/CodeXBotz/File-Sharing-Bot",
-  "logo": "https://telegra.ph/file/14d3013fda21281c54b61.jpg",
+  "repository": "https://github.com/fahriwetv08/filesharelinkpreset",
+  "logo": "https://telegra.ph/file/752e597281857206e1a9e.jpg",
   "env": {
     "TG_BOT_TOKEN": {
       "description": "Your Bot token, Get it from @Botfather",

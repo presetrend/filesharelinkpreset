@@ -10,26 +10,26 @@ from helper_func import encode, get_message_id
 async def batch(client: Client, message: Message):
     while True:
         try:
-            first_message = await client.ask(text = "Teruskan pesan pertama dari Database Channel (with Quotes)..\n\nor Send the DB Channel Post Link", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
+            first_message = await client.ask(text = "Teruskan pesan pertama dari Database Channel (with Quotes)..\n\natau kirimkan link pesan dari database channel.", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
         except:
             return
         f_msg_id = await get_message_id(client, first_message)
         if f_msg_id:
             break
         else:
-            await first_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote = True)
+            await first_message.reply("❌ Error\n\nPostingan yang Diteruskan ini bukan dari Saluran Database saya atau Tautan ini diambil dari Database Channel", quote = True)
             continue
 
     while True:
         try:
-            second_message = await client.ask(text = "Teruskan pesan terakhir dari Database Channel (with Quotes)..\nor Send the DB Channel Post link", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
+            second_message = await client.ask(text = "Teruskan pesan terakhir dari Database Channel (with Quotes)..\natau kirimkan link pesan dari database channel.", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
         except:
             return
         s_msg_id = await get_message_id(client, second_message)
         if s_msg_id:
             break
         else:
-            await second_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote = True)
+            await second_message.reply("❌ Error\n\nPostingan yang Diteruskan ini bukan dari Saluran Database saya atau Tautan ini diambil dari Database Channel", quote = True)
             continue
 
 
@@ -44,14 +44,14 @@ async def batch(client: Client, message: Message):
 async def link_generator(client: Client, message: Message):
     while True:
         try:
-            channel_message = await client.ask(text = "Teruskan Pesan Dari database channel (with Quotes)..\nor Send the DB Channel Post link", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
+            channel_message = await client.ask(text = "Teruskan Pesan Dari database channel (with Quotes)..\natau Kirim tautan Database Channel Post", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
         except:
             return
         msg_id = await get_message_id(client, channel_message)
         if msg_id:
             break
         else:
-            await channel_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is not taken from DB Channel", quote = True)
+            await channel_message.reply("❌ Error\n\nPosting diteruskan ini bukan dari Saluran DB saya atau Tautan ini tidak diambil dari Database Channel", quote = True)
             continue
 
     base64_string = await encode(f"get-{msg_id * abs(client.db_channel.id)}")
